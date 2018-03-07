@@ -20,13 +20,57 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    width: 100%;
+    width: 80%;
     min-height: 60px;
+    z-index: 0;
+}
+
+.author {
+    text-align: center;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 10%;
+    min-height: 60px;
+    z-index: 1;
+}
+
+.author img {
+    height: 55px;
+}
+
+.kana_swith {
+    text-align: center;
+    color: white;
+    background-color: #b700ffaf;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 20%;
+    min-height: 60px;
+    font-size: 200%;
+    line-height: 60px;
+}
+
+.kata {
+    color: #000080;
+    border: 1px solid #00008020;
+}
+
+.hira {
+    color: #b700ff;
+    border: 1px solid #b700ff20; 
+}
+
+.seion span {
+    width: 40px;
+    height: 40px;
 }
 
 .kanatable {
     font-family: DSJapanese;
-    border: 1px solid;
     font-size: 100%;
     text-align: center;
     margin: auto;
