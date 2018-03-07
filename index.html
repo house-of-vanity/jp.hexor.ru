@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div id="guess-box" value="0;0" class="guess-box" onclick="next(this.value)">あ</div>
+    <div class='header' onclick='kanatable()'>
+      <br>
+        <span >Show/hide kana table</span>
+    </div>
+    
+    <div id='kanatable' style='display:none'>
+        <table class="kanatable">
+            <tbody>
+                <tr>
+                    <td class="seion">あ</td>
+                    <td class="seion">い</td>
+                    <td class="seion">う</td>
+                    <td class="seion">え</td>
+                    <td class="seion">お</td>
+                </tr>
+                <tr>
+                    <td class="romaji">а</td>
+                    <td class="romaji">и</td>
+                    <td class="romaji">у</td>
+                    <td class="romaji">э</td>
+                    <td class="romaji">о</td>
+                </tr>
+                <tr>
+                    <td class="seion">か</td>
+                    <td class="seion">き</td>
+                    <td class="seion">く</td>
+                    <td class="seion">け</td>
+                    <td class="seion">こ</td>
+                </tr>
+                <tr>
+                    <td class="romaji">ка</td>
+                    <td class="romaji">ки</td>
+                    <td class="romaji">ку</td>
+                    <td class="romaji">кэ</td>
+                    <td class="romaji">ко</td>
+                </tr>
+                <tr>
+                    <td class="seion">さ</td>
+                    <td class="seion">し</td>
+                    <td class="seion">す</td>
+                    <td class="seion">せ</td>
+                    <td class="seion">そ</td>
+                </tr>
+                <tr>
+                    <td class="romaji">са</td>
+                    <td class="romaji">си</td>
+                    <td class="romaji">су</td>
+                    <td class="romaji">сэ</td>
+                    <td class="romaji">со</td>
+                </tr>
+                <tr>
+                    <td class="seion">た</td>
+                    <td class="seion">ち</td>
+                    <td class="seion">つ</td>
+                    <td class="seion">て</td>
+                    <td class="seion">と</td>
+                </tr>
+                <tr>
+                    <td class="romaji">та</td>
+                    <td class="romaji">ти</td>
+                    <td class="romaji">цу</td>
+                    <td class="romaji">тэ</td>
+                    <td class="romaji">то</td>
+                </tr>
+                <tr>
+                    <td class="seion">な</td>
+                    <td class="seion">に</td>
+                    <td class="seion">ぬ</td>
+                    <td class="seion">ね</td>
+                    <td class="seion">の</td>
+                </tr>
+                <tr>
+                    <td class="romaji">на</td>
+                    <td class="romaji">ни</td>
+                    <td class="romaji">ну</td>
+                    <td class="romaji">нэ</td>
+                    <td class="romaji">но</td>
+                </tr>
+                <tr>
+                    <td class="seion">は</td>
+                    <td class="seion">ひ</td>
+                    <td class="seion">ふ</td>
+                    <td class="seion">へ</td>
+                    <td class="seion">ほ</td>
+                </tr>
+                <tr>
+                    <td class="romaji">ха</td>
+                    <td class="romaji">хи</td>
+                    <td class="romaji">фу</td>
+                    <td class="romaji">хэ</td>
+                    <td class="romaji">хо</td>
+                </tr>
+                <tr>
+                    <td class="seion">ま</td>
+                    <td class="seion">み</td>
+                    <td class="seion">む</td>
+                    <td class="seion">め</td>
+                    <td class="seion">も</td>
+                </tr>
+                <tr>
+                    <td class="romaji">ма</td>
+                    <td class="romaji">ми</td>
+                    <td class="romaji">му</td>
+                    <td class="romaji">мэ</td>
+                    <td class="romaji">мо</td>
+                </tr>
+                <tr>
+                    <td class="seion">や</td>
+                    <td class="seion"></td>
+                    <td class="seion">ゆ</td>
+                    <td class="seion"></td>
+                    <td class="seion">よ</td>
+                </tr>
+                <tr>
+                    <td class="romaji">я</td>
+                    <td class="romaji"></td>
+                    <td class="romaji">ю</td>
+                    <td class="romaji"></td>
+                    <td class="romaji">ё</td>
+                </tr>
+                <tr>
+                    <td class="seion">ら</td>
+                    <td class="seion">り</td>
+                    <td class="seion">る</td>
+                    <td class="seion">れ</td>
+                    <td class="seion">ろ</td>
+                </tr>
+                <tr>
+                    <td class="romaji">ра</td>
+                    <td class="romaji">ри</td>
+                    <td class="romaji">ру</td>
+                    <td class="romaji">рэ</td>
+                    <td class="romaji">ро</td>
+                </tr>
+                <tr>
+                    <td class="seion">わ</td>
+                    <td class="seion"></td>
+                    <td class="seion"></td>
+                    <td class="seion"></td>
+                    <td class="seion">を</td>
+                </tr>
+                <tr>
+                    <td class="romaji">ва</td>
+                    <td class="romaji"></td>
+                    <td class="romaji"></td>
+                    <td class="romaji"></td>
+                    <td class="romaji">во
+                    </td>
+                </tr>
+                <tr>
+                    <td class="seion">ん</td>
+                </tr>
+                <tr>
+                    <td class="romaji">н</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
