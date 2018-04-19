@@ -25,6 +25,25 @@ body {
     z-index: 0;
 }
 
+
+
+#kana_helper {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+#kana_helper-content {
+  border: 1px solid #ab47bc;
+  border-radius: 10em/10em;
+  font-size:1.5em;
+  text-align: center;
+  margin: auto;
+  color: white;
+  background-color: #b700ff;
+  height: 30px;
+  width: 30px;
+}
 .author {
     text-align: center;
     color: white;
@@ -42,7 +61,7 @@ body {
     padding: 5px;
 }
 
-.kana_swith {
+.mode_switch {
     text-align: center;
     color: white;
     background-color: #b700ffaf;

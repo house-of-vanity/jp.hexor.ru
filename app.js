@@ -6,9 +6,9 @@ var alphabet_h = [
     ['な', 'に', 'ぬ', 'ね', 'の'],
     ['は', 'ひ', 'ふ', 'へ', 'ほ'],
     ['ま', 'み', 'む', 'め', 'も'],
-    ['や',       'ゆ',       'よ'],
+    ['や', 'ゆ', 'よ'],
     ['ら', 'り', 'る', 'れ', 'ろ'],
-    ['わ',             'ん', 'を']
+    ['わ', 'ん', 'を']
 ]
 
 var alphabet_k = [
@@ -19,47 +19,57 @@ var alphabet_k = [
     ['ナ', 'ニ', 'ヌ', 'ネ', 'ノ'],
     ['ハ', 'ヒ', 'フ', 'ヘ', 'ホ'],
     ['マ', 'ミ', 'ム', 'メ', 'モ'],
-    ['ヤ',       'ユ',       'ヨ'],
+    ['ヤ', 'ユ', 'ヨ'],
     ['ラ', 'リ', 'ル', 'レ', 'ロ'],
-    ['ワ',             'ン', 'ヲ']
+    ['ワ', 'ン', 'ヲ']
 ]
 
 var pronounce = [
-    ['А',  'И',  'У',  'Э',  'О' ],
+    ['А', 'И', 'У', 'Э', 'О'],
     ['КА', 'КИ', 'КУ', 'КЭ', 'КО'],
     ['СА', 'СИ', 'СУ', 'СЭ', 'СО'],
     ['ТА', 'ТИ', 'ЦУ', 'ТЭ', 'ТО'],
     ['НА', 'НИ', 'НУ', 'НЭ', 'НО'],
     ['ХА', 'ХИ', 'ФУ', 'ХЭ', 'ХО'],
     ['МА', 'МИ', 'МУ', 'МЭ', 'МО'],
-    ['Я',         'Ю',        'Ё'],
+    ['Я', 'Ю', 'Ё'],
     ['РА', 'РИ', 'РУ', 'РЭ', 'РО'],
-    ['ВА',        'Н',    'О<br>(ВО)']
+    ['ВА', 'Н', 'О<br>(ВО)']
 ]
 
-// mode 
+// mode_kana 
 // h - hiragana only
 // k - katakana only
 // b - both
-var mode = 'h';
+var mode_kana = 'h';
 // 1 if kanatable is visible
 var table_show = 0;
 // 0 if pronounce is visible
 var state = 1;
+// mode_learning
+// if kana - alphabetes learning mode
+// if words - words  learning mode
+var mode_learning = 'kana';
+
+// onload ivents
+window.onload = function () { 
+    //fill in kana tables
+    document.getElementById("kana_helper_table").innerHTML = hiragana_table + katakana_table + both_kana_table;
+ }
 
 function alphabet_swap() {
     var alphabet_span = document.getElementById("curr_alphabet");
-    if (table_show == 1){
+    if (table_show == 1) {
         kanatable();
     }
-    if (mode == 'h'){
-        mode = 'k';
+    if (mode_kana == 'h') {
+        mode_kana = 'k';
         alphabet_span.innerHTML = 'ア';
-    }else if (mode == 'k') {
-        mode = 'b';
+    } else if (mode_kana == 'k') {
+        mode_kana = 'b';
         alphabet_span.innerHTML = 'あ/ア';
     } else {
-        mode = 'h';
+        mode_kana = 'h';
         alphabet_span.innerHTML = 'あ';
     }
 }
@@ -79,18 +89,18 @@ function next(curr_num) {
     var rand_num = curr_num;
     rand_num[0] = Math.floor(Math.random() * alphabet_h.length);
     rand_num[1] = Math.floor(Math.random() * alphabet_h[rand_num[0]].length);
-    if (mode == 'h'){
+    if (mode_kana == 'h') {
         var char = alphabet_h[rand_num[0]][rand_num[1]];
-    }else if (mode == 'k'){
+    } else if (mode_kana == 'k') {
         var char = alphabet_k[rand_num[0]][rand_num[1]];
-    }else{
-        if (Math.random() >= 0.5){
+    } else {
+        if (Math.random() >= 0.5) {
             var char = alphabet_h[rand_num[0]][rand_num[1]];
-        }else{
+        } else {
             var char = alphabet_k[rand_num[0]][rand_num[1]];
         }
     }
-    var guess_box_div = document.getElementById("guess-box");
+    var guess_box_div = document.getElementById("kana-guess");
     guess_box_div.innerHTML = char;
     guess_box_div.value = rand_num[0] + ';' + rand_num[1];
     state = 1;
@@ -99,24 +109,24 @@ function next(curr_num) {
 function unravel(curr_num) {
     if (curr_num == undefined) {
         curr_num = [0, 0];
-    }else{
+    } else {
         curr_num = curr_num.split(";");
         curr_num[0] = parseInt(curr_num[0]);
         curr_num[1] = parseInt(curr_num[1]);
     }
     var char = pronounce[curr_num[0]][curr_num[1]];
-    var guess_box_div = document.getElementById("guess-box");
+    var guess_box_div = document.getElementById("kana-guess");
     guess_box_div.innerHTML = char;
     guess_box_div.value = curr_num[0] + ';' + curr_num[1];
     state = 0;
 }
 
 function kanatable() {
-    if (mode == 'h'){
+    if (mode_kana == 'h') {
         var kanatable = document.getElementById("kanatable_h");
-    }else if (mode == 'k'){
+    } else if (mode_kana == 'k') {
         var kanatable = document.getElementById("kanatable_k");
-    }else {
+    } else {
         var kanatable = document.getElementById("kanatable_b");
     }
     var guess_box_div = document.getElementById("guess-box");
@@ -129,5 +139,37 @@ function kanatable() {
         kanatable.style.display = 'block';
         guess_box_div.style.display = 'none';
         table_show = 1;
+    }
+}
+
+function switch_learning_mode() {
+    if (mode_learning == 'kana') {
+        mode_learning = 'words';
+    } else if (mode_learning == 'words') {
+        mode_learning = 'kana';
+    }
+    switch_page(mode_learning);
+}
+
+function switch_page(mode) {
+    if (mode == 'kana') {
+        document.getElementById("title").innerHTML = 'KANA';
+        document.getElementById("guess-box").innerHTML = '<div id="kana-guess" onclick="next(this.value)">あ</div>';
+        document.getElementById("kana_helper").innerHTML = '<div id="kana_helper-content" onclick="kanatable()">?</div>';
+        document.getElementById("mode_switch").innerHTML = '<span onclick="alphabet_swap()" id="curr_alphabet"></span>';
+        document.getElementById("kana_helper_table").innerHTML = hiragana_table + katakana_table + both_kana_table;
+        var alphabet_span = document.getElementById("curr_alphabet");
+        if (mode_kana == 'h') {
+            alphabet_span.innerHTML = 'あ';
+        } else if (mode_kana == 'k') {
+            alphabet_span.innerHTML = 'ア';
+        } else if (mode_kana == 'b'){
+            alphabet_span.innerHTML = 'あ/ア';
+        }
+    }else if (mode == 'words'){
+        document.getElementById("title").innerHTML = 'WORDS';
+        document.getElementById("guess-box").innerHTML = '...';
+        document.getElementById("mode_switch").innerHTML = '1';
+        document.getElementById("kana_helper").innerHTML = '';
     }
 }
