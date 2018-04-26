@@ -51,11 +51,13 @@ var state = 1;
 // if words - words  learning mode
 var mode_learning = 'kana';
 
+// default unit nubmer
+var unit = 1;
 // onload ivents
-window.onload = function () { 
+window.onload = function () {
     //fill in kana tables
     document.getElementById("kana_helper_table").innerHTML = hiragana_table + katakana_table + both_kana_table;
- }
+}
 
 function alphabet_swap() {
     var alphabet_span = document.getElementById("curr_alphabet");
@@ -74,7 +76,7 @@ function alphabet_swap() {
     }
 }
 
-function next(curr_num) {
+function next_letter(curr_num) {
     if (state == 1) {
         unravel(curr_num);
         return;
@@ -106,6 +108,7 @@ function next(curr_num) {
     state = 1;
 }
 
+// returns pronounce for requested letter number
 function unravel(curr_num) {
     if (curr_num == undefined) {
         curr_num = [0, 0];
@@ -121,6 +124,7 @@ function unravel(curr_num) {
     state = 0;
 }
 
+// show/hide kanatable for current mode
 function kanatable() {
     if (mode_kana == 'h') {
         var kanatable = document.getElementById("kanatable_h");
@@ -142,6 +146,7 @@ function kanatable() {
     }
 }
 
+// swap learning modes and call switch_page for new mode
 function switch_learning_mode() {
     if (mode_learning == 'kana') {
         mode_learning = 'words';
@@ -151,10 +156,11 @@ function switch_learning_mode() {
     switch_page(mode_learning);
 }
 
+// setting up page for requested mode.
 function switch_page(mode) {
     if (mode == 'kana') {
         document.getElementById("title").innerHTML = 'KANA';
-        document.getElementById("guess-box").innerHTML = '<div id="kana-guess" onclick="next(this.value)">あ</div>';
+        document.getElementById("guess-box").innerHTML = '<div id="kana-guess" onclick="next_letter(this.value)">あ</div>';
         document.getElementById("kana_helper").innerHTML = '<div id="kana_helper-content" onclick="kanatable()">?</div>';
         document.getElementById("mode_switch").innerHTML = '<span onclick="alphabet_swap()" id="curr_alphabet"></span>';
         document.getElementById("kana_helper_table").innerHTML = hiragana_table + katakana_table + both_kana_table;
@@ -163,13 +169,36 @@ function switch_page(mode) {
             alphabet_span.innerHTML = 'あ';
         } else if (mode_kana == 'k') {
             alphabet_span.innerHTML = 'ア';
-        } else if (mode_kana == 'b'){
+        } else if (mode_kana == 'b') {
             alphabet_span.innerHTML = 'あ/ア';
         }
-    }else if (mode == 'words'){
+    } else if (mode == 'words') {
         document.getElementById("title").innerHTML = 'WORDS';
         document.getElementById("guess-box").innerHTML = '...';
-        document.getElementById("mode_switch").innerHTML = '1';
+        document.getElementById("mode_switch").innerHTML = 'u.' + unit;
         document.getElementById("kana_helper").innerHTML = '';
+
     }
+}
+
+function unit_size(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
+// words logic...
+function next_word() {
+    if (mode_learning != 'words') {
+        return;
+    } else {
+        size = unit_size(WORDS["unit" + unit]);
+        rand_num = Math.floor(Math.random() * size);
+        word = Object.keys(WORDS["unit" + unit])[rand_num];
+        translation = WORDS["unit" + unit][word];
+        return word + ' - ' + translation;
+    }
+
 }

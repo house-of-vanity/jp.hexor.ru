@@ -464,3 +464,11 @@ var both_kana_table = `
             </table>
         </div>
 `
+
+WORDS = new Object();
+WORDS = {
+	"unit1": {
+		"word1": "tr1",
+		"word2": "tr2"
+	}
+}
