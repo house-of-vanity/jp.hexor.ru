@@ -174,7 +174,7 @@ function switch_page(mode) {
         }
     } else if (mode == 'words') {
         document.getElementById("title").innerHTML = 'WORDS';
-        document.getElementById("guess-box").innerHTML = '...';
+        document.getElementById("guess-box").innerHTML = '<div id="word-guess" onclick="next_word(this.value)">tap to start</div>';
         document.getElementById("mode_switch").innerHTML = 'u.' + unit;
         document.getElementById("kana_helper").innerHTML = '';
 
@@ -189,6 +189,10 @@ function unit_size(obj) {
     return size;
 };
 
+function word_tap() {
+    document.getElementById("word-rus").className = "word-rus-tap";
+}
+
 // words logic...
 function next_word() {
     if (mode_learning != 'words') {
@@ -198,6 +202,9 @@ function next_word() {
         rand_num = Math.floor(Math.random() * size);
         word = Object.keys(WORDS["unit" + unit])[rand_num];
         translation = WORDS["unit" + unit][word];
+        document.getElementById("guess-box").innerHTML = '<div id="word-guess" value="' +
+            word + '" onclick="next_word(this.value)">' +
+            word + '</div><div id="word-rus" class="word-rus" onclick="word_tap()">' + translation + '</div>';
         return word + ' - ' + translation;
     }
 

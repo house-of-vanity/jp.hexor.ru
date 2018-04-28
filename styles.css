@@ -133,3 +133,21 @@ tr .seion {
     height: 50%;
     margin: auto;
 }
+
+#word-guess {
+    font-size: 0.3em;
+    height:50%;
+}
+
+.word-rus {
+    text-shadow: 0 0 50px #b700ff;
+    color: transparent;
+    transition: text-shadow 0.5s;
+    font-size: 0.2em;
+}
+.word-rus-tap {
+    text-shadow: 0 0 0px #b700ff;
+    color: transparent;
+    transition: text-shadow 0.5s;
+    font-size: 0.2em;
+}
