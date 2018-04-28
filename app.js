@@ -148,6 +148,9 @@ function kanatable() {
 
 // swap learning modes and call switch_page for new mode
 function switch_learning_mode() {
+    if (table_show == 1) {
+        kanatable();
+    }
     if (mode_learning == 'kana') {
         mode_learning = 'words';
     } else if (mode_learning == 'words') {
