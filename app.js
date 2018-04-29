@@ -178,10 +178,19 @@ function switch_page(mode) {
     } else if (mode == 'words') {
         document.getElementById("title").innerHTML = 'WORDS';
         document.getElementById("guess-box").innerHTML = '<div id="word-guess" onclick="next_word(this.value)">tap to start</div>';
-        document.getElementById("mode_switch").innerHTML = 'u.' + unit;
+        document.getElementById("mode_switch").innerHTML = '<div onclick="change_unit()">u.' + unit + '</div>';
         document.getElementById("kana_helper").innerHTML = '';
 
     }
+}
+
+function change_unit() {
+    if (unit < unit_size(WORDS)) {
+        unit++;
+    } else {
+        unit = 1;
+    }
+    document.getElementById("mode_switch").innerHTML = '<div onclick="change_unit()">u.' + unit + '</div>';
 }
 
 function unit_size(obj) {
@@ -205,9 +214,8 @@ function next_word() {
         rand_num = Math.floor(Math.random() * size);
         word = Object.keys(WORDS["unit" + unit])[rand_num];
         translation = WORDS["unit" + unit][word];
-        document.getElementById("guess-box").innerHTML = '<div id="word-guess" value="' +
-            word + '" onclick="next_word(this.value)">' +
-            word + '</div><div id="word-rus" class="word-rus" onclick="word_tap()">' + translation + '</div>';
+        document.getElementById("guess-box").innerHTML = '<div id="word-guess"  onclick="next_word(this.value)">' +
+            word + '</div><div id="word-rus" class="word-rus" onclick="word_tap()"><span id="unrawel-word">... tap to give up ...</span><br>' + translation + '</div>';
         return word + ' - ' + translation;
     }
 

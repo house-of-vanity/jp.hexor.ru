@@ -140,14 +140,26 @@ tr .seion {
 }
 
 .word-rus {
-    text-shadow: 0 0 50px #b700ff;
-    color: transparent;
+    padding-top: 15%;
+    background-color: #b700ff;
+    height: 50%;
+/*  border-top: 5px double #b700ff;
     transition: text-shadow 0.5s;
-    font-size: 0.2em;
+    text-shadow: 0 0 50px #b700ff;
+*/
+
+    font-size: 0.3em;
 }
 .word-rus-tap {
-    text-shadow: 0 0 0px #b700ff;
-    color: transparent;
-    transition: text-shadow 0.5s;
-    font-size: 0.2em;
+    padding-top: 15%;
+    height: 50%;
+    background-color: white;
+
+    transition: background-color 0.5s;
+    font-size: 0.3em;
+
+}
+
+#unrawel-word {
+    color: white;
 }

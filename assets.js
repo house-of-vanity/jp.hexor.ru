@@ -464,23 +464,3 @@ var both_kana_table = `
             </table>
         </div>
 `
-
-WORDS = new Object();
-WORDS = {
-	"unit1": {
-		"word1": "tr1",
-		"word2": "tr2",
-		"word3": "tr3",
-		"word4": "tr4",
-		"word5": "tr5",
-		"word6": "tr6"
-	},
-	"unit2": {
-		"ord1": "tr1",
-		"ord2": "tr2",
-		"ord3": "tr3",
-		"ord4": "tr4",
-		"ord5": "tr5",
-		"ord6": "tr6"
-	}
-}
