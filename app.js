@@ -215,7 +215,7 @@ function next_word() {
         word = Object.keys(WORDS["unit" + unit])[rand_num];
         translation = WORDS["unit" + unit][word];
         document.getElementById("guess-box").innerHTML = '<div id="word-guess"  onclick="next_word(this.value)">' +
-            word + '</div><div id="word-rus" class="word-rus" onclick="word_tap()"><span id="unrawel-word">... tap to give up ...</span><br>' + translation + '</div>';
+            word + '</div><div id="word-rus" class="word-rus" onclick="word_tap()"><span id="unrawel-word">tap to give up ^_,,_^</span><br>' + translation + '</div>';
         return word + ' - ' + translation;
     }
 
