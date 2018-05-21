@@ -43,6 +43,20 @@ body {
   background-color: #b700ff;
   height: 30px;
   width: 30px;
+  border: 2px solid white;
+}
+
+#word_helper-content {
+  border: 1px solid #ab47bc;
+  border-radius: 10em/10em;
+  font-size:1.5em;
+  text-align: center;
+  margin: auto;
+  color: white;
+  background-color: #b700ff;
+  height: 30px;
+  width: 30px;
+  border: 2px solid white;
 }
 .author {
     text-align: center;

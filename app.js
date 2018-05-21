@@ -179,7 +179,7 @@ function switch_page(mode) {
         document.getElementById("title").innerHTML = 'WORDS';
         document.getElementById("guess-box").innerHTML = '<div id="word-guess" onclick="next_word(this.value)">tap to start</div>';
         document.getElementById("mode_switch").innerHTML = '<div onclick="change_unit()">u.' + unit + '</div>';
-        document.getElementById("kana_helper").innerHTML = '';
+        document.getElementById("kana_helper").innerHTML = '<div id="word_helper-content" onclick="wordtable()">?</div>';
 
     }
 }
@@ -202,21 +202,43 @@ function unit_size(obj) {
 };
 
 function word_tap() {
-    document.getElementById("word-rus").className = "word-rus-tap";
+    try {
+        document.getElementById("word-rus").className = "word-rus-tap";
+    }
+    catch (error) {
+        return;
+    }
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // words logic...
-function next_word() {
-    if (mode_learning != 'words') {
-        return;
-    } else {
-        size = unit_size(WORDS["unit" + unit]);
-        rand_num = Math.floor(Math.random() * size);
-        word = Object.keys(WORDS["unit" + unit])[rand_num];
-        translation = WORDS["unit" + unit][word];
-        document.getElementById("guess-box").innerHTML = '<div id="word-guess"  onclick="next_word(this.value)">' +
-            word + '</div><div id="word-rus" class="word-rus" onclick="word_tap()"><span id="unrawel-word">tap to reveal answer ^_,,_^</span><br>' + translation + '</div>';
-        return word + ' - ' + translation;
+async function next_word() {
+    try {
+        // just check if object is presented in DOM
+        document.getElementById("word-rus").className;
+        // check if translation is showing
+        if (document.getElementById("word-rus").className != "word-rus-tap") {
+            word_tap();
+            await sleep(1200);
+        }
+    } catch (error) {
+        console.log("It's a start.");
     }
+    size = unit_size(WORDS["unit" + unit]);
+    rand_num = Math.floor(Math.random() * size);
+    word = Object.keys(WORDS["unit" + unit])[rand_num];
+    translation = WORDS["unit" + unit][word];
+    document.getElementById("guess-box").innerHTML = '<div id="word-guess"  onclick="next_word(this.value)">' +
+        word + '</div><div id="word-rus" class="word-rus" onclick="word_tap()">' +
+        '<span id="unrawel-word">tap to reveal answer ^_,,_^</span><br>' +
+        translation + '</div>';
+    return word + ' - ' + translation;
 
 }
+
+//function wordtable() {
+//
+//}
